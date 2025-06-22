@@ -1,0 +1,36 @@
+services:
+  s3-storage:
+    image: minio/minio
+    container_name: minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: admin123
+    command: server /data --console-address ":9001"
+    volumes:
+      - "D:\\Work\\YoRHa\\data\\minio:/data"
+  db:
+    image: postgres
+    container_name: postgresql
+    restart: always
+    # set shared memory limit when using docker compose
+    shm_size: 256mb
+    ports:
+      - "9002:5432"
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+      POSTGRES_DB: YoRHa
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - "D:\\Work\\YoRHa\\data\\postgresql:/var/lib/postgresql/data/pgdata"
+
+
+  database-ui:
+    image: adminer
+    container_name: database-adminer
+    restart: always
+    ports:
+      - 8080:8080
