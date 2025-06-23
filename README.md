@@ -1,5 +1,7 @@
-# Yorha
+# YoRHa
 Repo for Way Of The Code project.
+
+![alt_text](assets/YoRHa_logo_small.png)
 
 ## Deployment
 To run the application you only need to run the commands:
